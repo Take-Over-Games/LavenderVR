@@ -4,20 +4,20 @@ Lavender is a massive community-driven social sandbox game akin to games such as
 # Topics
 ## Content creation
 
-    - [Introduction](./content-creation.md)
-    - [Avatars](./creating-avatars.md)
-    - [Worlds](./creating-worlds.md)
-    - [Uploading content](./uploading-content.md)
-    - [Scripting](./scripting.md)
+ - [Introduction](./content-creation.md)
+ - [Avatars](./creating-avatars.md)
+ - [Worlds](./creating-worlds.md)
+ - [Uploading content](./uploading-content.md)
+ - [Scripting](./scripting.md)
 
 ## Hosting
 
-    - [Command-line flags](./command-line-flags.md)
-    - [Hosting a server](./server-hosting.md)
+ - [Command-line flags](./command-line-flags.md)
+ - [Hosting a server](./server-hosting.md)
 
 ## General
 
-    - [Game support files/platform files](./platform-locations.md)
-    - [Task board](https://trello.com/b/z1gQsLex/lavender)
-    - [What is Unity DOTS?](https://unity.com/dots)
-    - [Get Unity Hub](https://unity3d.com/get-unity/download)
+ - [Game support files/platform files](./platform-locations.md)
+ - [Task board](https://trello.com/b/z1gQsLex/lavender)
+ - [What is Unity DOTS?](https://unity.com/dots)
+ - [Get Unity Hub](https://unity3d.com/get-unity/download)

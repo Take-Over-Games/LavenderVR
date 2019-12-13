@@ -9,6 +9,7 @@ multiple includes is allowed, there will be a gamemode structure to work from.
 [Uploading Content](./uploading-content.md)
 
 Temp export of the api, will be updated more soon
+
 ````LuaAPI
 Core lua api that can be accessed under the global table called "api"
 Exported Type:LuaAPI
@@ -70,3 +71,4 @@ Example:
 ComponentRef
 Safe handle to a Component on a gameobject returned by various api methods
 Exported Type:ComponentRef
+````

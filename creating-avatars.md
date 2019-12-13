@@ -4,17 +4,20 @@
 
 ## For new creators
 
-Creating Avatars for Lavender requires a rigged character that Unity can use (a Humanoid character or any other Unity Mecanim viable rigged model), if such a model is available, creating an avatar is possible and can be done by first importing the 3d model into Unity by dragging and dropping it into the Project Folder, clicking on the model & then going to Rig, selecting “Humanoid” from the Animation Type then applying settings so the Avatar can be configured, then under Avatar Definition, select “Create From This Model” from the dropdown menu.  
+Creating Avatars for Lavender requires a rigged character that Unity can use (a Humanoid character or any other Unity Mecanim viable rigged model). If such a model is available, creating an avatar is possible and can be done by first importing the 3d model into Unity by dragging and dropping it into the Project Folder, clicking on the model & then going to Rig, selecting “Humanoid” from the Animation Type then applying settings so the Avatar can be configured, then under Avatar Definition, select “Create From This Model” from the dropdown menu.
+
 This will switch Unity into the Rig Mapping mode, check if every bone is correctly assigned (If everything is green, things are likely good to go - depending on the character), scroll down on the very left side and press Apply/Done, assuming the model has been correctly configured, drag the model into the scene/hierarchy window and everything is good to go for the next step.
 
 
 ### Materials
-Setting up Materials is required for the Avatar model to shade properly, if the model has already had materials setup in a 3d modelling suite such as Blender, Maya, 3DSMax, then it is possible to extract those materials. This is done by going to the same page as the Model Setup, clicking on the Materials tab and clicking on “Extract Materials”, choose a folder within the models Project Folder. In the material folder, select each material one by one and assign the texture(s) corresponding to the Material, if everything is setup correctly, you should see the changes reflected within the scene, assuming that the Model is present in the current scene.
+Setting up Materials is required for the Avatar model to shade properly. If the model has already had materials setup in a 3d modelling suite such as Blender, Maya, 3DSMax, then it is possible to extract those materials.
+
+This is done by going to the same page as the Model Setup, clicking on the Materials tab and clicking on “Extract Materials”. Choose a folder within the models Project Folder. In the material folder, select each material one by one and assign the texture(s) corresponding to the Material. If everything is setup correctly, you should see the changes reflected within the scene, assuming that the Model is present in the current scene.
 
 **Note:** If the Standard shader material setup does not look satisfactory for an Anime/Cartoon style character, you may download a open-source toon shader. Here are two that should work with the latest version of Unity:
 
-[NoeNoe](https://github.com/HugoZink/NoeNoeShaderEdits)
-[Poiyomi](https://github.com/poiyomi/PoiyomiToonShader)
+ - [NoeNoe](https://github.com/HugoZink/NoeNoeShaderEdits)
+ - [Poiyomi](https://github.com/poiyomi/PoiyomiToonShader)
 
 For the new Unity Scriptable Render Pipelines such as HDRP/URP, a Shader Graph shader will be linked here on a later date.
 

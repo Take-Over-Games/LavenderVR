@@ -22,3 +22,4 @@ Lavender is a massive community-driven social sandbox game akin to games such as
  - [What is Unity DOTS?](https://unity.com/dots)
  - [Get Unity Hub](https://unity3d.com/get-unity/download)
  - [Full-body binding](./full-body-binding.md)
+ - [Keyboard shortcuts](./keyboard-shortcuts.md)

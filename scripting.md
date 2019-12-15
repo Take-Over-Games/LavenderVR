@@ -1,7 +1,7 @@
 
 # Scripting
 
-Currently all scripting is done in lua, though text assets inside of your project.
+Currently all scripting is done in lua, through text assets inside of your project.
 multiple includes is allowed, there will be a gamemode structure to work from.
 
 [Code Reference](#)

@@ -16,7 +16,7 @@ In general, the higher your target amount of people, the more resources you'll h
 
 ## Installation
 * [Installing SteamCMD](#installing-steamcmd)
-* [Installing Lavender Server](#installing-iavender-server)
+* [Installing Lavender Server](#installing-lavender-server)
 
 ### Installing SteamCMD
 **Note for newbies:** the `&&` just chains commands together with a "If preceding command runs successfully, run the following command".  

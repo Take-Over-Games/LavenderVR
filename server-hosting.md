@@ -15,7 +15,7 @@ lavender.exe -server -world "d737e06c-39ac-4442-9ffd-1bec7cadb1d7" -nosteam -bat
 
 In addition to the command-line arguments, one would have to set up a `Server` section in the settings.ini. Refer to the following snippet for example set up:
 
-```ini
+````ini
 [Server]
 APIPort = 10000
 Port = 10000
@@ -24,6 +24,6 @@ Tick = 60
 Public = true
 ServerName = NotDefault
 PropLimitPerPlayer = 100
-CleanupPropsOnDisconnect = true```
+CleanupPropsOnDisconnect = true````
 
 Check out the [Linux Hosting guide](./Linux-Hosting.md).

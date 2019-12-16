@@ -24,6 +24,7 @@ Tick = 60
 Public = true
 ServerName = NotDefault
 PropLimitPerPlayer = 100
-CleanupPropsOnDisconnect = true````
+CleanupPropsOnDisconnect = true
+````
 
 Check out the [Linux Hosting guide](./Linux-Hosting.md).

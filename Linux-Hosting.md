@@ -15,8 +15,8 @@ In general, the higher your target amount of people, the more resources you'll h
 ----
 
 ## Installation
-* [Installing SteamCMD](#Installing-SteamCMD)
-* [Installing Lavender Server](#Installing-Lavender-Server)
+* [Installing SteamCMD](#installing-steamcmd)
+* [Installing Lavender Server](#installing-iavender-server)
 
 ### Installing SteamCMD
 **Note for newbies:** the `&&` just chains commands together with a "If preceding command runs successfully, run the following command".  
@@ -122,12 +122,12 @@ screen -S lavenderserver -d -m ~/lavender/Lavender -server -nosound -world <worl
 
 ### Command Line Documentation
 
-<kbd>-settings <file> </kbd> - Manually pass a config file from `<file>` location to the Lavender instance
-<kbd>-server </kbd> - Run Lavender as a server
-<kbd>-username <username></kbd> - Submit `<username>` to Lavender content API
-<kbd>-password <username> </kbd> - Submit `<password>` to Lavender content API
-<kbd>-world <world GUID> </kbd> - Load a `<world>` on startup
-<kbd>-nosteam </kbd> - Do not use steam integration
+* <kbd>-settings <file> </kbd> - Manually pass a config file from `<file>` location to the Lavender instance
+* <kbd>-server </kbd> - Run Lavender as a server
+* <kbd>-username <username></kbd> - Submit `<username>` to Lavender content API
+* <kbd>-password <username> </kbd> - Submit `<password>` to Lavender content API
+* <kbd>-world <world GUID> </kbd> - Load a `<world>` on startup
+* <kbd>-nosteam </kbd> - Do not use steam integration
 
 More flags available at [command-line flags page](./command-line-flags.md).
  

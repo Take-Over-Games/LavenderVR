@@ -1,6 +1,6 @@
 # Avatar Creation
 
-[Advanced Users](#For-Advanced-Users)
+[Advanced Users](#for-advanced-users)
 
 ## For new creators
 

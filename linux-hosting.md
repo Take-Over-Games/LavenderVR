@@ -120,6 +120,7 @@ Two things you'll want to be doing when running a server are automatic updates, 
 === Run and save logs ===
 
 This script will add logs and timestamps to the logs. Useful for diagnosing problems. If ran in a screen session, will also restart the server automatically if it can't detect the process. Will update this to be less awful in the future.
+Lavender does have a -logfile option now but it does not produce timestamps.
 
 <code>
 #!/bin/bash
@@ -170,6 +171,7 @@ done
 
 This monstrosity checks if there's an update, and then updates if required. In lieu of an actual 'current version' API this downloads a second copy of the game, checks the version file, then deletes/copies as neccessary. It's terrible and if you can get anything better working then please let us know. I run mine every 6 hours, will probably change to every hour.
 
+Note that this installs the '''nightly''' version of lavender. Change the branch as required. 
 
 <code>
 #!/bin/bash
@@ -185,7 +187,7 @@ timestamp=$(date +%s)
 tmpinst="/tmp/${timestamp}"
 steamusername="$1"
 steamcmd="/home/lavender/Steam/steamcmd.sh"
-branch="beta nightly validate" #Non beta would just be "validate"
+branch="beta nightly validate" # Non beta would just be "validate"
 real_install="$2"
 lavenderexe="Lavender"
 tempfile="/home/lavender/.lavendertemp"

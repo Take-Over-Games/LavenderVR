@@ -1,128 +1,146 @@
-== Linux Server ==
+# Linux Server Hosting Guide
+**Note:** Current linux builds are behind the windows builds, so this guide will not currently function.
 
-** Note: Current linux builds are behind the windows builds, so this guide will not currently function. **
-
-Required:
-
-* Linux server (Recommended ubuntu server)
+### OS Requirements:
+* Linux distro (Recommended ubuntu server)
 * sudo / root on your server
 
-Recommended minimum specs:
+### Recommended minimum specs:
+In general, the higher your target amount of people, the more resources you'll have to dedicate. These are the minimum specs.
 
 * 2GB+ RAM
 * Decent x86_64 CPU - i5-2400 / FX-6100 and above
 * At least 2 cores
 
-You'll need more for more people.
+----
 
-=== Installation ===
-For newbies; the && just chains commands together with a "If command before runs okay, run command after"
-Lavender is managed through Steam. Assuming apt is your package manager.
-We'll create a service user for your lavender server, and install prereqs:
+## Installation
+* [Installing SteamCMD](#installing-steamcmd)
+* [Installing Lavender Server](#installing-lavender-server)
 
-<code>sudo apt update && sudo apt install -y gdb curl lib32gcc1 && sudo useradd -m lavender</code>
+### Installing SteamCMD
+**Note for newbies:** the `&&` just chains commands together with a "If preceding command runs successfully, run the following command".  
+Lavender's files are managed through Steam. Assuming `apt` is your package manager, we'll create a service user for your lavender server, and install prereqs:
 
-Switch to the service user to install steam and lavender itself. this switches user and opens up bash.
-You will likely have to do this every time you want to do something with the server.
+````bash
+sudo apt update && sudo apt install -y gdb curl lib32gcc1 && sudo useradd -m lavender
+````
 
-<code> sudo su -l lavender -s /bin/bash </code>
+Now switch to the service user to install steam and lavender itself. This switches the current user and opens up bash in their context.  
+You will likely have to do this every time you want to do something with the server:
 
-Install steam. You can change the directories but there isn't much point.
+````bash
+sudo su -l lavender -s /bin/bash
+````
 
-<code>mkdir ~/Steam && cd ~/Steam && curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -</code>
+Install steam. Optionally change the installation directory to suit your needs:
 
-Lavender server is not a seperate free instance so you'll need to login to steam via the CLI so that steam will download the game. Run the following to just login for the first time. Steam will save your credentials... somewhere.
+````bash
+mkdir ~/Steam && cd ~/Steam && curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+````
 
-<code> ~/Steam/steamcmd.sh +login <yourusername> </code>
+Lavender server is not a seperate free instance so you'll need to login to steam via the CLI so that steam will download the game. Run the following command to just login for the first time. Steam will save your credentials... somewhere.
+
+````bash
+~/Steam/steamcmd.sh +login <yourusername>
+````
 
 You'll be prompted for a password. Steam will cache your credentials so you can automate server tasks.
 
-Installing lavender:
+### Installing Lavender Server
 
-<code>~/Steam/steamcmd.sh +login <yourusername> +force_install_dir ~/lavender +app_update 886710 validate +quit</code>
+````bash
+~/Steam/steamcmd.sh +login <yourusername> +force_install_dir ~/lavender +app_update 886710 validate +quit
+````
 
 To install the nightly beta:
 
-<code>~/Steam/steamcmd.sh +login <yourusername> +force_install_dir ~/lavender +app_update 886710 beta nightly validate +quit</code>
+````bash
+~/Steam/steamcmd.sh +login <yourusername> +force_install_dir ~/lavender +app_update 886710 beta nightly validate +quit
+````
 
-To remove it and install a new version, just delete the lavender folder and install the version you want. EG to delete entire install: <code> rm -rf ~/lavender</code>
+To remove it and install a new version, just delete the lavender folder and install the version you want. EG to delete entire install: `rm -rf ~/lavender`.
 
-== Initial Configuration ==
+## Initial Configuration
 
-Config file will be found at the following. (Documentation later, same as the windows config)
+Config file can be found at the following location: `~/.config/unity3d/Take Over Games/Lavender/settings.ini`. Don't forget to escape spaces if you're copying the string :-)
 
-<code> ~/.config/unity3d/Take Over Games/Lavender/settings.ini </code>
+Running the server requires your Lavender platform credentials (the ones you use to login to lavender). There's no good way to do this, but the least bad is to save the username and pass to file, make it lavender-read only, then pull it out. Elsewise your email & password will be in the process list and visible to all users on your server. Optionally, use environment variables.
 
-Running the server requires your Lavender website credentials (also what you use to login to lavender). There's no good way to do this, but the least bad is to save the username and pass to file, make it lavender-read only, then pull it out. Elsewise your user/pass will be in the process list and visible to all users on your server.
+Unless you have already changed it, your server will run in private mode, not being displayed in public the server list.
 
-By default it won't show on the galaxy. Config that later. 
+Save your lavender password to file with the following command. The username will be an email address.
 
-Save your lavender password to file with the following. The username will be an email address.
+````bash
+printf <password> > ~/.lavender && chmod 400 ~/.lavender
+````
 
-<code> printf <password> > ~/.lavender && chmod 400 ~/.lavender </code>
+**Security Note:** setting permission mask of 400 switches the file into read-only mode, only available to your current user. Leaving file exposed with 664/665/666 means **anyone** using your system can read your credentials, therefore running the above command is highly recommended.
 
-'''CAUTION''' - this file is extremely sensitive. Chmod 400 will make it '''read only''' to the lavender (service) user only. Allowing other users to edit or view this is a very bad idea. But it's better than showing your password on the process list.
-
-== Running the server ==
-
+## Running the server
 Login as your lavender service user:
 
-<code> sudo su lavender -s /bin/bash </code>
+````bash
+sudo su lavender -s /bin/bash
+````
 
-Running the lavender server itself: (For argument documentation; see <argument documentation> )
+Running the lavender server itself:
+````bash
+~/lavender/Lavender -server -nosound -world <worldid> -nosteam -batchmode -nographics -user <lavenderusername> -password $(cat /home/lavender/.lavender)
+````
 
-<code>~/lavender/Lavender -server -nosound -world <worldid> -nosteam -batchmode -nographics -user <lavenderusername> -password $(cat /home/lavender/.lavender) </code>
-
-That will run the executable. If you lose SSH connection or close it then it'll die. Get the above working, get stuff configured, then use more production-ready commands. For example. the binary should usually be launched in a new process, either with & or with screen. (see administration below)
+That will run the executable in your session. However, if you lose or close the connection, the server process will be terminated. Get the above working, get stuff configured, then use more production-oriendet methods of running the process in background. For example, the binary should usually be launched in a new host process, either with & or with screen/tmux (see administration section below).
 
 
-== Advanced Configuration ==
+## Advanced Configuration
+By default your server won't appear on the galaxy list. If you want to change this, add the following section to your config file: 
 
-By default your server won't appear on the galaxy. To do this, in the config file, add 
-
-<code> [Server]
+````ini
+[Server]
 Servername = <the server name you want>
 Public = true
-</code>
+````
 
 Other options include:
 
-<code>
+````ini
 PropLimitPerPlayer = 100
 CleanupPropsOnDisconnect = true
 APIPort = 10000
 Port = 10000
 MaxPlayers = 1024
 Tick = 60
-</code>
+````
+**Note:** leaving `CleanupPropsOnDisconnect = True` is highly recommended because players cannot really at the time of writing anyway, and it is not clear wether reconnected players are able to clear own previously spawned items.
 
-(highly suggest leaving <code>CleanupPropsOnDisconnect = True</code> on because players cannot build right now anyway and I dont know if reconnecting players can clear their old props) t. Ram
-<link to configuration documentation should go here>
+Start the executable under `screen` so it runs in the background:
 
-Start the executable with <code>screen</code> so it runs in the background:
+````bash
+screen -S lavenderserver -d -m ~/lavender/Lavender -server -nosound -world <worldid> -nosteam -batchmode -nographics -user <lavenderusername>
+-password $(cat /home/lavender/.lavender)
+````
 
-<code> screen -S lavenderserver -d -m ~/lavender/Lavender -server -nosound -world <worldid> -nosteam -batchmode -nographics -user <lavenderusername>
--password $(cat /home/lavender/.lavender) </code>
+### Command Line Documentation
 
-=== Command Line Documentation ===
+* <kbd>-settings <file> </kbd> - Manually pass a config file from `file` location to the Lavender instance
+* <kbd>-server </kbd> - Run Lavender as a server
+* <kbd>-username <username></kbd> - Submit `username` to Lavender content API
+* <kbd>-password <username> </kbd> - Submit `password` to Lavender content API
+* <kbd>-world <world GUID> </kbd> - Load a `world` on startup
+* <kbd>-nosteam </kbd> - Do not use steam integration
 
-<code> -settings <file> </code> - Manually pass a config file to the Lavender instance
-<code> -server </code> - Run Lavender as a server
-<code> -username <username></code> - Submit username to Lavender content API
-<code> -password <username> </code> - Submit password to Lavender content API
-<code> -world <world GUID> </code> - Load a world on startup
-<code> -nosteam </code> - Do not use steam
+More flags available at [command-line flags page](./command-line-flags.md).
  
-==Scripts and such==
+### Scripts and such
 
-Two things you'll want to be doing when running a server are automatic updates, and autorestart. You can get yourself up and running with what is above, but this section will just contain a few scripts that may help you administer your server. One word of warning is that these are not pretty, but they'll do the job.
+Two things you'll want to be doing when running a server are automatic updates and autorestart. You can get yourself up and running with what is above, but this section will just contain a few scripts that may help you with administering your server. A word of warning, though: these are not pretty, but they'll do the job.
 
-=== Run and save logs ===
+### Run and save logs
 
 This script will add logs and timestamps to the logs. Useful for diagnosing problems. If ran in a screen session, will also restart the server automatically if it can't detect the process. Will update this to be less awful in the future.
 Lavender does have a -logfile option now but it does not produce timestamps.
 
-<code>
+````bash
 #!/bin/bash
 
 # As this contains credentials, chmod 700 it so other users can't read it!
@@ -165,15 +183,15 @@ while [ 1 = 1 ]; do
         fi
         sleep 120s
 done
-</code>
+````
 
-== Update Script ==
+### Update Script
 
-This monstrosity checks if there's an update, and then updates if required. In lieu of an actual 'current version' API this downloads a second copy of the game, checks the version file, then deletes/copies as neccessary. It's terrible and if you can get anything better working then please let us know. I run mine every 6 hours, will probably change to every hour.
+The following monstrosity checks if there's an update, then updates if required. In lieu of an actual 'current version' API this downloads a second copy of the game, checks the version file, then deletes/copies as neccessary. It's terrible and if you can get anything better working then please let us know. I run mine every 6 hours, will probably change to every hour.
 
 Note that this installs the '''nightly''' version of lavender. Change the branch as required. 
 
-<code>
+````bash
 #!/bin/bash
 
 # Usage: ./update_check.sh "steam username" "lavender installation dir"
@@ -239,4 +257,4 @@ else
         rm -rf "$tmpinst"
 fi
 # Your responsibility to restart it
-</code>
+````

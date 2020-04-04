@@ -20,7 +20,7 @@ In some rare cases, you might want to use developer console to issue some comman
   Clears the console.
 
 - `world` or `changelevel` / `world <guid>` or `changelevel <guid>`  
-  *Admin-only*
+  *Admin-only*  
   Issue a world change to a server. `<guid>` being the only argument, marks the target world/map by its ID. While an admin can change the map by clicking on a world in content list, one can change the map to any private world by supplying its GUID.
 
 - `avatar` / `avatar <guid>`  
@@ -43,7 +43,7 @@ In some rare cases, you might want to use developer console to issue some comman
 
 - `connect` / `connect <ip>`  
   Connects to a specified IP.  
-  *Example: `connect 192.168.1.5`
+  *Example: `connect 192.168.1.5`.*
 
 - `version` / `version <version>`  
   Allows changing your internal version id for joining servers. This is a developer feature for version mismatch bypass if the internal network structure hasn't changed too much.

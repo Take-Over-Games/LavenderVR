@@ -17,14 +17,18 @@ In addition to the command-line arguments, one would have to set up a `Server` s
 
 ````ini
 [Server]
-APIPort = 10000
-Port = 10000
-MaxPlayers = 1024
-Tick = 60
-Public = true
-ServerName = NotDefault
-PropLimitPerPlayer = 100
-CleanupPropsOnDisconnect = true
+APIPort=10000
+Port=10000
+MaxPlayers=1024
+Tick=30
+BandwidthLimitPerPlayer=1000000
+PropLimitPerPlayer=100
+CleanupPropsOnDisconnect=false
+ServerName=Default
+Public=false
+BaseDistance=36
+MaxDistance=1000
+MinAccumlatePerTick=1000
 ````
 
-Check out the [Linux Hosting guide](./Linux-Hosting.md).
+Check out the [Linux Hosting guide](./Linux-Hosting.md). Refer to [console commands](./console-commands.md) to view existing console commands, both local and remote.

@@ -14,6 +14,7 @@ Lavender is a massive community-driven social sandbox game akin to games such as
 
  - [Command-line flags](./command-line-flags.md)
  - [Hosting a server](./server-hosting.md)
+ - [Console commands](./console-commands.md)
 
 ## General
 
